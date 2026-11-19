@@ -65,11 +65,7 @@ function rotationChange(rotx, roty, rotz) {
     const upright = Math.abs(rotx) > 80 && Math.abs(rotx) < 100;
 
     if (upright) {
-        if (doorClosed === null) doorClosed = rotz;
-        playAudio(scaleValue(abs(rotz - doorClosed), 0, 90, 0, 0.5));
-    } else {
-        doorClosed = null;
-        playAudio(0);
+        playAudio(scaleValue(abs(rotz), 0, 90, 0, 0.5));
     }
 }
 
