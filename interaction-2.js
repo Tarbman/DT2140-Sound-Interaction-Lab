@@ -61,7 +61,7 @@ function rotationChange(rotx, roty, rotz) {
 
     if (upright) {
         let speed = abs(rotz - pRotationZ);
-        playAudio(constrain(speed, 0, 1));
+        playAudio(constrain(speed / 10, 0, 0.5));
     } else {
         playAudio(0);
     }
