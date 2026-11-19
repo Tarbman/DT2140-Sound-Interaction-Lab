@@ -66,8 +66,7 @@ function rotationChange(rotx, roty, rotz) {
 
     if (upright) {
         if (doorClosed === null) doorClosed = rotz;
-        let angle = abs(rotz - doorClosed);  
-        playAudio(constrain(scaleValue(angle, 0, 90, 0, 0.5), 0, 0.5));
+        playAudio(scaleValue(abs(rotz - doorClosed), 0, 90, 0, 0.5));
     } else {
         doorClosed = null;
         playAudio(0);
