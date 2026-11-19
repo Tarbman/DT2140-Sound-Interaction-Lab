@@ -53,7 +53,7 @@ door.createDSP(audioContext, 1024)
 
 let doorClosed = null;
 
-function scale (number, inMin, inMax, outMin, outMax) {
+function scaleValue (number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
 
@@ -66,8 +66,8 @@ function rotationChange(rotx, roty, rotz) {
 
     if (upright) {
         if (doorClosed === null) doorClosed = rotz;
-        let angle = rotz - doorClosed;  
-        playAudio(constrain(scale(angle, 0, 1, 0, 0.5), 0, 0.5));
+        let angle = abs(rotz - doorClosed);  
+        playAudio(constrain(scaleValue(angle, 0, 90, 0, 0.5), 0, 0.5));
     } else {
         doorClosed = null;
         playAudio(0);
