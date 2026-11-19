@@ -56,7 +56,6 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
-    let yaw = 0;
     const upright = Math.abs(rotx) > 80 && Math.abs(rotx) < 100;
 
     if (upright) {
@@ -83,7 +82,6 @@ function deviceTurned() {
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    playAudio();
 }
 
 function getMinMaxParam(address) {
@@ -111,8 +109,7 @@ function playAudio(position) {
     if (audioContext.state === 'suspended') {
         return;
     }
-    dspNode.setParamValue("/door/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/door/door/position", position) }, 100);
+    dspNode.setParamValue("/door/door/position", position)
 }
 
 //==========================================================================================
