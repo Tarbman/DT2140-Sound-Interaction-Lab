@@ -51,6 +51,10 @@ door.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
+function scale (number, inMin, inMax, outMin, outMax) {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
 function accelerationChange(accx, accy, accz) {
     // playAudio()
 }
@@ -60,7 +64,7 @@ function rotationChange(rotx, roty, rotz) {
 
     if (upright) {
         let speed = abs(rotz - pRotationZ);
-        playAudio(constrain(speed / 10, 0, 0.5));
+        playAudio(scale(rotz, 0, 1, 0, 0.5));
     } else {
         playAudio(0);
     }
