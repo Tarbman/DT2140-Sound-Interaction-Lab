@@ -104,7 +104,7 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudio() {
+function playAudio(position) {
     if (!dspNode) {
         return;
     }
