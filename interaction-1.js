@@ -50,9 +50,20 @@ churchBell.createDSP(audioContext, 1024)
 //------------------------------------------------------------------------------------------
 //
 //==========================================================================================
+const LARGE_MOVEMENT_THRESHOLD = 15;
+const COOLDOWN = 1000;
+let lastTrigger = 0;
 
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
+    const dx = accx - pAccelerationX;
+    const dy = accy - pAccelerationY;
+    const dz = accz - pAccelerationZ;
+    const change = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+    if (change > LARGE_MOVEMENT_THRESHOLD && millis() - lastTrigger > COOLDOWN) {
+        lastTrigger = millis();
+        playAudio();
+    }
 }
 
 function rotationChange(rotx, roty, rotz) {
@@ -74,7 +85,6 @@ function deviceTurned() {
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    playAudio();
 }
 
 function getMinMaxParam(address) {
